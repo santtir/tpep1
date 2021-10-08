@@ -23,12 +23,13 @@ switch ($params[0]) {
     case 'detallar':
         $controller->showTeamsByContries($params[1]);
         break;
-
-    case 'info_team':
+    case 'teams':
+        $controller->showTeams();
+            break;
+    case 'cups':
         $controller->showCups([$params[1]]);
         break;
-
-    default:
-        echo'se rompio';
+        default:
+        echo '404 - Página no encontrada';
         break;
 }
