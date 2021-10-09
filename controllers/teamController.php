@@ -20,15 +20,13 @@ class teamController{
     }
 
     public function showTeams(){
-        $countrie=$this->model->getAllTeams();
-        $this->view->showAllTeams($countrie);
+        $teams=$this->model->getAllTeams();
+        $this->view->showAllTeams($teams);
     }
 
     public function showTeamsByContries($id_team){
-
         $teams=$this->model->getTeamsbyCountries($id_team);
         $this->view->showAllTeamsCountrie($teams);
-
     }
 
     public function showCups($id_cups){
@@ -36,4 +34,9 @@ class teamController{
         $this->view->showCupsTeams($cups);
     }
 
+    public function showAdmin(){
+        $countrie=$this->model->getAllCountries();
+        $teams=$this->model->getAllTeams();
+        $this->view->showAdministrator($countrie,$teams);
+    }
 }

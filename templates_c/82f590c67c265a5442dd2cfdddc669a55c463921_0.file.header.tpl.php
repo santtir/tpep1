@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-10-08 22:30:37
+/* Smarty version 3.1.39, created on 2021-10-09 19:41:28
   from 'C:\xampp\htdocs\tpep1_\tpep1-master\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6160aa6d315c02_96545854',
+  'unifunc' => 'content_6161d4489305d1_22824266',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '82f590c67c265a5442dd2cfdddc669a55c463921' => 
     array (
       0 => 'C:\\xampp\\htdocs\\tpep1_\\tpep1-master\\templates\\header.tpl',
-      1 => 1633724635,
+      1 => 1633801263,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6160aa6d315c02_96545854 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6161d4489305d1_22824266 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -51,7 +51,7 @@ echo BASE_URL <?php echo '?>';?>
             <a class="nav-link" aria-current="page" href="teams">Todos Los Equipos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Acceso Administrador</a>
+            <a class="nav-link" aria-current="page" href="administrator">Acceso Administrador</a>
           </li>
         </ul>
       </div>

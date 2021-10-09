@@ -41,4 +41,12 @@ class teamView{
         $this->smarty->display('templates/cup.tpl');
 
     }
+
+    function showAdministrator($countries,$teams){
+
+        $this->smarty->assign('titulo','Administrador');
+        $this->smarty->assign('countries',$countries);
+        $this->smarty->assign('teams',$teams);
+        $this->smarty->display('templates/administrator.tpl');
+    }
 }

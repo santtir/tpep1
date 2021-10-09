@@ -26,7 +26,7 @@
             <a class="nav-link" aria-current="page" href="teams">Todos Los Equipos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Acceso Administrador</a>
+            <a class="nav-link" aria-current="page" href="administrator">Acceso Administrador</a>
           </li>
         </ul>
       </div>
