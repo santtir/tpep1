@@ -11,7 +11,7 @@
                 <div class="col-9">
                     <div class="form-group">
                          <label class="text-uppercase">Pais</label>
-                         <input name="countrie" type="text" class="form-control">
+                         <input maxlength="100" name="countrie" type="text" class="form-control">
                     </div>
                  </div>
             </div>
@@ -24,7 +24,7 @@
                     <div class="col-9">
                         <div class="form-group">
                             <label class="text-uppercase">Equipo</label>
-                            <input name="team" type="text" class="form-control">
+                            <input  maxlength="100" name="team" type="text" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -89,6 +89,7 @@
             <table class="table table-dark">
             <thead>
                 <tr>
+                <th scope="col">Pais</th>
                 <th scope="col">Equipo</th>
                 <th scope="col">Libertadores</th>
                 <th scope="col">Sudamericanas</th>
@@ -96,15 +97,22 @@
                 <th scope="col">Editar</th>
                 </tr>
             </thead>
-            {foreach from=$teams item=$team }
+             
             <tbody>
+            {foreach from=$countries item=$countrie }
+                {foreach from=$teams item=$team }
                 <tr>
+                 {if $countrie->id == $team->id_pais}
+                    <td>{$countrie->pais }
                     <td>{$team->nombre_equipo}</td>
                     <td>{$team->cantidad_libertadores}</td>
                     <td>{$team->cantidad_sudamericana}</td>
                     <td><a class="btn btn-danger" href="deleteTeam/{$team->id}">Borrar</a></td>
                     <td><a class="btn btn-secondary" href="editTeam/{$team->id}">Editar</a></td>
+                 {/if}
+                    
                 {/foreach}
+            {/foreach}
                 </tr>
             </tbody>
             </table>

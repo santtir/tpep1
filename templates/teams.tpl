@@ -8,18 +8,23 @@
     
   <thead>
     <tr>
+      <th scope="col">Pais</th>
       <th scope="col">Equipo</th>
       <th scope="col">Libertadores</th>
       <th scope="col">Sudamericanas</th>
     </tr>
   </thead>
-  {foreach from=$teams item=$team }
+  {foreach from=$countries item=$countrie }
+     {foreach from=$teams item=$team }
   <tbody>
-    <tr>
+    <tr>  {if $countrie->id == $team->id_pais}
+          <td>{$countrie->pais }
           <td>{$team->nombre_equipo}</td>
           <td>{$team->cantidad_libertadores}</td>
           <td>{$team->cantidad_sudamericana}</td>
+          {/if}
      {/foreach}
+  {/foreach}
     </tr>
   </tbody>
 </table>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-10-10 22:36:09
+/* Smarty version 3.1.39, created on 2021-10-11 00:24:45
   from 'C:\xampp\htdocs\tpep1_\tpep1-master\templates\administrator.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_61634eb9ee0c81_99968277',
+  'unifunc' => 'content_6163682d2f8c26_35071730',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5d04f8f411e93f6db97286dfc9ffb53efe0061cd' => 
     array (
       0 => 'C:\\xampp\\htdocs\\tpep1_\\tpep1-master\\templates\\administrator.tpl',
-      1 => 1633898166,
+      1 => 1633904682,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ),false)) {
-function content_61634eb9ee0c81_99968277 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6163682d2f8c26_35071730 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -38,7 +38,7 @@ $_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cach
                 <div class="col-9">
                     <div class="form-group">
                          <label class="text-uppercase">Pais</label>
-                         <input name="countrie" type="text" class="form-control">
+                         <input maxlength="100" name="countrie" type="text" class="form-control">
                     </div>
                  </div>
             </div>
@@ -51,7 +51,7 @@ $_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cach
                     <div class="col-9">
                         <div class="form-group">
                             <label class="text-uppercase">Equipo</label>
-                            <input name="team" type="text" class="form-control">
+                            <input  maxlength="100" name="team" type="text" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -135,6 +135,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             <table class="table table-dark">
             <thead>
                 <tr>
+                <th scope="col">Pais</th>
                 <th scope="col">Equipo</th>
                 <th scope="col">Libertadores</th>
                 <th scope="col">Sudamericanas</th>
@@ -142,14 +143,24 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 <th scope="col">Editar</th>
                 </tr>
             </thead>
+             
+            <tbody>
             <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['countries']->value, 'countrie');
+$_smarty_tpl->tpl_vars['countrie']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['countrie']->value) {
+$_smarty_tpl->tpl_vars['countrie']->do_else = false;
+?>
+                <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['teams']->value, 'team');
 $_smarty_tpl->tpl_vars['team']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['team']->value) {
 $_smarty_tpl->tpl_vars['team']->do_else = false;
 ?>
-            <tbody>
                 <tr>
+                 <?php if ($_smarty_tpl->tpl_vars['countrie']->value->id == $_smarty_tpl->tpl_vars['team']->value->id_pais) {?>
+                    <td><?php echo $_smarty_tpl->tpl_vars['countrie']->value->pais;?>
+
                     <td><?php echo $_smarty_tpl->tpl_vars['team']->value->nombre_equipo;?>
 </td>
                     <td><?php echo $_smarty_tpl->tpl_vars['team']->value->cantidad_libertadores;?>
@@ -160,7 +171,12 @@ $_smarty_tpl->tpl_vars['team']->do_else = false;
 ">Borrar</a></td>
                     <td><a class="btn btn-secondary" href="editTeam/<?php echo $_smarty_tpl->tpl_vars['team']->value->id;?>
 ">Editar</a></td>
+                 <?php }?>
+                    
                 <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+            <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 </tr>

@@ -19,8 +19,8 @@ class teamView{
 
     }
 
-    function showAllTeams($teams){
-        
+    function showAllTeams($countries,$teams){
+        $this->smarty->assign('countries', $countries);
         $this->smarty->assign('titulo','Historia de los equipos');
         $this->smarty->assign('teams', $teams);
         $this->smarty->display('templates/teams.tpl');

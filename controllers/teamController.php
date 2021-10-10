@@ -21,9 +21,10 @@ class teamController{
     }
 
     public function showTeams(){
+        $countrie=$this->model->getAllCountries();
         $teams=$this->model->getAllTeams();
 
-        $this->view->showAllTeams($teams);
+        $this->view->showAllTeams($countrie,$teams);
     }
 
     public function showTeamsByContries($id_team){
@@ -61,7 +62,7 @@ class teamController{
 
     public function editByCountries($id){
 
-        
+
     }
 
     public function addTeams(){
