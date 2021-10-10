@@ -46,4 +46,34 @@ class teamModel{
 
         return $cups;
     }
+
+    function insertCountries($countrie){
+        $query=$this->db->prepare('INSERT INTO countries (pais) VALUES (?)');
+        $query->execute([$countrie]);
+
+        return $this->db->lastInsertId();
+    }
+
+    function delCountries($id){
+        $query=$this->db->prepare('DELETE FROM countries WHERE id=?');
+        $query->execute([$id]);
+    }
+
+    function InsertTeams($name,$liberty,$southAmerica,$id_countrie){
+        $query=$this->db->prepare('INSERT INTO teams (nombre_equipo, cantidad_libertadores, cantidad_sudamericana, id_pais) VALUES (?,?,?,?)');
+        $query->execute([$name,$liberty,$southAmerica,$id_countrie]);
+
+        return $this->db->lastInsertId();
+    }
+
+    function delTeams($id){
+        $query=$this->db->prepare('DELETE FROM teams WHERE id=?');
+        $query->execute([$id]);
+    }
+
+    function updateTeam($team,$liberty,$southAmerica,$id_countrie,$id){
+        var_dump($team,$liberty,$southAmerica,$id_countrie,$id);
+        $query=$this->db->prepare('UPDATE teams SET nombre_equipo= ?, cantidad_libertadores=?, cantidad_sudamericana=?, id_pais=? WHERE id=?');
+        $query->execute([$team,$liberty,$southAmerica,$id_countrie,$id]);
+    }
 }

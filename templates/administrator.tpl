@@ -6,7 +6,7 @@
 
     <h4 class="text-capitalize">Agregar una nueva categoria</h4>
     <div class="row align-items-center">
-        <form action="insertar" method="POST" class="my-4">
+        <form action="insertCountrie" method="POST" class="my-4">
              <div class="row">
                 <div class="col-9">
                     <div class="form-group">
@@ -19,12 +19,12 @@
         </form>
         <div class="col order-1">
             <h4 class="text-capitalize">Agregar un nuevo equipo</h4>
-            <form action="insertar" method="POST" class="my-4">
+            <form action="insertTeam" method="POST" class="my-4">
                 <div class="row">
                     <div class="col-9">
                         <div class="form-group">
                             <label class="text-uppercase">Equipo</label>
-                            <input name="countrie" type="text" class="form-control">
+                            <input name="team" type="text" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                     <div class="col-9">
                         <div class="form-group">
                             <label class="text-uppercase">Libertadores</label>
-                            <input name="libertadores" type="number" class="form-control">
+                            <input name="liberty" type="number" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                     <div class="col-9">
                         <div class="form-group">
                             <label class="text-uppercase">Sudamericanas</label>
-                            <input name="sudamericanas" type="number" class="form-control">
+                            <input name="southAmerica" type="number" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -49,13 +49,10 @@
                         <label>Pais Del Equipo</label>
                         <select name="countries" class="form-control">
                         <option selected>Paises</option>
-                            <option value="1">Argentina</option>
-                            <option value="2">Brasil</option>
-                            <option value="3">Uruguay</option>
-                            <option value="4">Paraguay</option>
-                            <option value="5">Ecuador</option>
-                            <option value="6">Colombia</option>
-                            <option value="7">Chile</option>
+                        {foreach from=$countries item=$countrie}
+                              <option value="{$countrie->id}">{$countrie->pais}</option>
+                        {/foreach}
+                      
                         </select>
             </div>
                 <button type="submit" class="btn btn-dark mt-2" href='sendTeam'>Enviar</button>
@@ -78,8 +75,8 @@
             <tbody>
                 <tr>
                     <td>{$countrie->pais}</td>
-                    <td><a class="btn btn-danger" href="delete/{$countrie->id}">Borrar</a></td>
-                    <td><a class="btn btn-secondary" href="edit/{$countrie->id}">Editar</a></td>
+                    <td><a class="btn btn-danger" href="deleteCountrie/{$countrie->id}">Borrar</a></td>
+                    <td><a class="btn btn-secondary" href="editCountrie/{$countrie->id}">Editar</a></td>
                 {/foreach}
                 </tr>
             </tbody>
@@ -105,8 +102,8 @@
                     <td>{$team->nombre_equipo}</td>
                     <td>{$team->cantidad_libertadores}</td>
                     <td>{$team->cantidad_sudamericana}</td>
-                    <td><a class="btn btn-danger" href="delete/{$team->id}">Borrar</a></td>
-                    <td><a class="btn btn-secondary" href="edit/{$team->id}">Editar</a></td>
+                    <td><a class="btn btn-danger" href="deleteTeam/{$team->id}">Borrar</a></td>
+                    <td><a class="btn btn-secondary" href="editTeam/{$team->id}">Editar</a></td>
                 {/foreach}
                 </tr>
             </tbody>
