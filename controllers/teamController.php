@@ -47,11 +47,15 @@ class teamController{
     }
 
     public function addCountries(){
-        $countrie = $_REQUEST['countrie'];
+        if( !isset( $_REQUEST['countrie'])){
+            $countrie = $_REQUEST['countrie'];
 
-        $this->model->insertCountries($countrie);
-
-        header("Location: " . administrator);
+            $this->model->insertCountries($countrie);
+    
+            header("Location: " . administrator);
+        }else{
+            $this->view->showError();
+        }
     }
 
     public function deleteCountries($id){
@@ -60,14 +64,22 @@ class teamController{
         header("Location: " . administrator);
     }
 
-    public function editByCountries($id){
+    public function UpdateCountrie(){
+        if(isset($_POST["selectCountries"])  || !isset($_POST["countrie"])){
+            $id = $_REQUEST['selectCountries'];
+            $countrie = $_REQUEST['countrie'];
 
+            $this->model->updateCountrie($id,$countrie);
+            header("Location: " . administrator);
+        }else{
+            $this->view->showError();
+        }
 
     }
 
     public function addTeams(){
-        if (isset($_POST["team"])  || isset($_POST["liberty"]) ||
-            isset($_POST["southAmerica"]) || isset($_POST["countries"]) ) {
+        if (!isset($_POST["team"])  || !isset($_POST["liberty"]) ||
+            !isset($_POST["southAmerica"]) || !isset($_POST["countries"]) ) {
             $team = $_REQUEST['team'];
             $liberty = $_REQUEST['liberty'];
             $southAmerica = $_REQUEST['southAmerica'];
@@ -76,7 +88,6 @@ class teamController{
             $this->model->InsertTeams($team,$liberty,$southAmerica,$id_countrie);
 
             header("Location: " . administrator);
-
         }else{
             $this->view->showError();
         }
@@ -88,21 +99,24 @@ class teamController{
         header("Location: " . administrator);
     }
 
-    public function editByTeams($id){
-        $this->view->editTeams($id);
-    }
-
-    public function confirmTeam($id){
-
+    public function confirmTeam(){
+        if (isset($_POST["selectTeams"])  || !isset($_POST["team"])  || !isset($_POST["liberty"]) ||
+        !isset($_POST["southAmerica"]) || !isset($_POST["countries"]) ){
+            $id = $_REQUEST['selectTeams'];
+            $team = $_REQUEST['team'];
+            $liberty = $_REQUEST['liberty'];
+            $southAmerica = $_REQUEST['southAmerica'];
+            $id_countrie = $_REQUEST['countries'];
+    
+            $this->model->updateTeam($id,$team,$liberty,$southAmerica,$id_countrie);
+    
+            header("Location: " . administrator);
+        }
+        else{
+            $this->view->showError();
+        }
        
-        $team = $_REQUEST['team'];
-        $liberty = $_REQUEST['liberty'];
-        $southAmerica = $_REQUEST['southAmerica'];
-        $id_countrie = $_REQUEST['countries'];
-
-        $this->model->updateTeam($team,$liberty,$southAmerica,$id_countrie,$id);
-
-        header("Location: " . administrator);
+       
 
         
     }

@@ -1,9 +1,9 @@
 <?php
-
 require_once('controllers/teamController.php');
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 define('administrator', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/administrator');
+
 
 if (!empty($_GET['action'])) {
     $action = $_GET['action'];
@@ -36,7 +36,7 @@ switch ($params[0]) {
         $controller->deleteCountries($params[1]);
         break;
     case 'editCountrie';
-        $controller->editByCountries($params[1]);
+        $controller->UpdateCountrie();
         break; 
     case 'insertTeam';
         $controller->addTeams();
@@ -45,10 +45,7 @@ switch ($params[0]) {
         $controller->deleteTeams($params[1]);
         break;
     case 'editTeam';
-        $controller->editByTeams($params[1]);
-        break; 
-    case 'confirmTeam';
-        $controller->confirmTeam($params[1]);
+        $controller->confirmTeam();
         break;    
         default:
         echo '404 - Página no encontrada';

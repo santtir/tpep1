@@ -18,7 +18,6 @@ class teamModel{
         return $countrie;
         
     }
-    //sin usar
     function getAllTeams(){
         $query=$this->db->prepare('SELECT * FROM teams');
         $query->execute();
@@ -59,6 +58,11 @@ class teamModel{
         $query->execute([$id]);
     }
 
+    function updateCountrie($id,$countrie){
+        $query=$this->db->prepare('UPDATE countries SET pais=? WHERE id=?');
+        $query->execute([$id,$countrie]);
+    }
+
     function InsertTeams($name,$liberty,$southAmerica,$id_countrie){
         $query=$this->db->prepare('INSERT INTO teams (nombre_equipo, cantidad_libertadores, cantidad_sudamericana, id_pais) VALUES (?,?,?,?)');
         $query->execute([$name,$liberty,$southAmerica,$id_countrie]);
@@ -71,8 +75,7 @@ class teamModel{
         $query->execute([$id]);
     }
 
-    function updateTeam($team,$liberty,$southAmerica,$id_countrie,$id){
-        var_dump($team,$liberty,$southAmerica,$id_countrie,$id);
+    function updateTeam($id,$team,$liberty,$southAmerica,$id_countrie){
         $query=$this->db->prepare('UPDATE teams SET nombre_equipo= ?, cantidad_libertadores=?, cantidad_sudamericana=?, id_pais=? WHERE id=?');
         $query->execute([$team,$liberty,$southAmerica,$id_countrie,$id]);
     }

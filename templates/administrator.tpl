@@ -6,6 +6,7 @@
 
     <h4 class="text-capitalize">Agregar una nueva categoria</h4>
     <div class="row align-items-center">
+        
         <form action="insertCountrie" method="POST" class="my-4">
              <div class="row">
                 <div class="col-9">
@@ -17,9 +18,84 @@
             </div>
             <button type="submit" class="btn btn-dark mt-2"  href='sendCountrie'>Enviar</button>
         </form>
+        <h4 class="text-capitalize">Editar categoria</h4>
+         <form action="editCountrie" method="POST" class="my-4">
+         <div class="form-group">
+                        <label>Pais Del Equipo</label>
+                        <select name="selectCountries" class="form-control">
+                        <option selected>Paises</option>
+                        {foreach from=$countries item=$countrie}
+                              <option value="{$countrie->id}">{$countrie->pais}</option>
+                        {/foreach}
+                      
+                        </select>
+        </div>
+             <div class="row">
+                <div class="col-9">
+                    <div class="form-group">
+                         <label class="text-uppercase">Pais</label>
+                         <input maxlength="100" name="countrie" type="text" class="form-control" >
+                    </div>
+                 </div>
+            </div>
+            <button type="submit" class="btn btn-dark mt-2"  href='sendCountrie'>Enviar</button>
+        </form>
+        
+        
         <div class="col order-1">
-            <h4 class="text-capitalize">Agregar un nuevo equipo</h4>
+            <h4 class="text-capitalize">Agregar un nuevo Item</h4>
             <form action="insertTeam" method="POST" class="my-4">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="form-group">
+                            <label class="text-uppercase">Equipo</label>
+                            <input  maxlength="100" name="team" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-9">
+                        <div class="form-group">
+                            <label class="text-uppercase">Libertadores</label>
+                            <input name="liberty" type="number" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-9">
+                        <div class="form-group">
+                            <label class="text-uppercase">Sudamericanas</label>
+                            <input name="southAmerica" type="number" class="form-control">
+                        </div>
+                    </div>
+                </div>
+        
+            <div class="form-group">
+                        <label>Pais Del Equipo</label>
+                        <select name="countries" class="form-control">
+                        <option selected>Paises</option>
+                        {foreach from=$countries item=$countrie}
+                              <option value="{$countrie->id}">{$countrie->pais}</option>
+                        {/foreach}
+                      
+                        </select>
+            </div>
+                <button type="submit" class="btn btn-dark mt-2" href='sendTeam'>Enviar</button>
+            </form>
+        </div>
+        <div class="col order-1">
+            <h4 class="text-capitalize">Editar un equipo</h4>
+            <form action="editTeam" method="POST" class="my-4">
+            <div class="form-group">
+                        <label>¿Que equipo desea editar?</label>
+                        <select name="selectTeams" class="form-control">
+                        <option selected>Equipos</option>
+                        {foreach from=$teams item=$team}
+                              <option value="{$team->id}">{$team->nombre_equipo}</option>
+                        {/foreach}
+                      
+                        </select>
+            </div>
                 <div class="row">
                     <div class="col-9">
                         <div class="form-group">
@@ -94,7 +170,6 @@
                 <th scope="col">Libertadores</th>
                 <th scope="col">Sudamericanas</th>
                 <th scope="col">Borrar</th>
-                <th scope="col">Editar</th>
                 </tr>
             </thead>
              
@@ -102,14 +177,14 @@
             {foreach from=$countries item=$countrie }
                 {foreach from=$teams item=$team }
                 <tr>
-                 {if $countrie->id == $team->id_pais}
+                    {if $countrie->id == $team->id_pais}
                     <td>{$countrie->pais }
                     <td>{$team->nombre_equipo}</td>
                     <td>{$team->cantidad_libertadores}</td>
                     <td>{$team->cantidad_sudamericana}</td>
                     <td><a class="btn btn-danger" href="deleteTeam/{$team->id}">Borrar</a></td>
-                    <td><a class="btn btn-secondary" href="editTeam/{$team->id}">Editar</a></td>
-                 {/if}
+                   
+                    {/if}
                     
                 {/foreach}
             {/foreach}
