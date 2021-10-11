@@ -1,23 +1,23 @@
 <?php
 require_once('controllers/teamController.php');
 
-define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
-define('administrator', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/administrator');
+define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
+define('administrator', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/administrator');
 
 
 if (!empty($_GET['action'])) {
     $action = $_GET['action'];
 } else {
-    $action = 'listar';
+    $action = 'home';
 }
 
 
 $params = explode('/', $action);
 
-$controller=new teamController();
+$controller = new teamController();
 
 switch ($params[0]) {
-    case 'listar':
+    case 'home':
         $controller->showCountries();
         break;
     case 'detallar':
@@ -37,7 +37,7 @@ switch ($params[0]) {
         break;
     case 'editCountrie';
         $controller->UpdateCountrie();
-        break; 
+        break;
     case 'insertTeam';
         $controller->addTeams();
         break;
@@ -46,8 +46,8 @@ switch ($params[0]) {
         break;
     case 'editTeam';
         $controller->confirmTeam();
-        break;    
-        default:
+        break;
+    default:
         echo '404 - Página no encontrada';
         break;
 }

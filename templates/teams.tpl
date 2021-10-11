@@ -31,4 +31,8 @@
 
 </div>
 
+<footer>
+
 {include file='templates/footer.tpl'}
+
+</footer>
