@@ -2,12 +2,14 @@
 
 require_once("models/teamModel.php");
 require_once("views/teamView.php");
+require_once("helpers/authHelpers.php");
 
 class teamController
 {
 
     private $model;
     private $view;
+    private $authHelper;
 
     public function __construct()
     {
