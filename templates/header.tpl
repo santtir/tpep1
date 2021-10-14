@@ -33,6 +33,13 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="administrator">Acceso Administrador</a>
                     </li>
+                    <li class="nav-item ms-auto">
+                             {if isset($smarty.session.USER_ID)}
+                                <a class="nav-link" href="logout">({$smarty.session.USER_EMAIL}) Logout</a>
+                            {else}
+                                <a class="nav-link" href="login">Ingresar</a>
+                            {/if}
+                    </li>
                 </ul>
             </div>
         </div>

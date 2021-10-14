@@ -14,12 +14,12 @@ class teamController
 
         $this->model = new teamModel();
         $this->view = new teamView();
+        $this -> authHelper = new  AuthHelper ();
     }
 
     public function showCountries()
     {
         $countrie = $this->model->getAllCountries();
-
         $this->view->showAllCountries($countrie);
     }
 
@@ -27,37 +27,35 @@ class teamController
     {
         $countrie = $this->model->getAllCountries();
         $teams = $this->model->getAllTeams();
-
         $this->view->showAllTeams($countrie, $teams);
     }
 
-    public function showTeamsByContries($id_team)
+    public function showTeamsByContries()
     {
-        $teams = $this->model->getTeamsbyCountries($id_team);
+        if (!empty($_REQUEST['countriesbyteams'])) {
 
-        $this->view->showAllTeamsCountrie($teams);
+            $id_team=$_REQUEST['countriesbyteams'];
+            $teams = $this->model->getTeamsbyCountries($id_team);
+            $this->view->showAllTeamsCountrie($teams); 
+        } else {
+            $this->view->showError();
+        }
+             
     }
 
-    public function showCups($id_cups)
-    {
-        $cups = $this->model->getCupsTeams($id_cups);
-
-        $this->view->showCupsTeams($cups);
-    }
 
     public function showAdmin()
-    {
+    {   $this -> authHelper -> checkLoggedIn ();   
         $countrie = $this->model->getAllCountries();
         $teams = $this->model->getAllTeams();
-
         $this->view->showAdministrator($countrie, $teams);
     }
 
     public function addCountries()
     {
+
         if (!empty($_REQUEST['countrie'])) {
             $countrie = $_REQUEST['countrie'];
-
             $this->model->insertCountries($countrie);
 
             header("Location: " . administrator);
@@ -68,9 +66,16 @@ class teamController
 
     public function deleteCountries($id)
     {
-        $this->model->delCountries($id);
+        $teams = $this->model->getTeamsbyCountries($id);
+        if(!empty($teams)){
+            $this->view->showError();
+            
+        }else{
+            $this->model->delCountries($id);
 
-        header("Location: " . administrator);
+            header("Location: " . administrator);
+        }
+       
     }
 
     public function UpdateCountrie()
@@ -78,7 +83,6 @@ class teamController
         if (!empty($_POST["selectCountries"])  && !empty($_POST["countrie"])) {
             $id = $_REQUEST['selectCountries'];
             $countrie = $_REQUEST['countrie'];
-
             $this->model->updateCountrie($id, $countrie);
             header("Location: " . administrator);
         } else {

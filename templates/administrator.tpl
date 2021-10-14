@@ -12,7 +12,7 @@
                     <div class="col-9">
                         <div class="form-group">
                             <label class="text-uppercase">Pais</label>
-                            <input maxlength="100" name="countrie" type="text" class="form-control">
+                            <input maxlength="100" name="countrie" type="text" class="form-control"  placeholder="Ingrese el nombre del Pais">
                         </div>
                     </div>
                 </div>
@@ -21,7 +21,7 @@
             <h4 class="text-capitalize">Editar categoria pais</h4>
             <form action="editCountrie" method="POST" class="my-4">
                 <div class="form-group">
-                    <label>Pais Del Equipo</label>
+                    <label>Pais </label>
                     <select name="selectCountries" class="form-control">
                         <option selected>-Elija el pais-</option>
                         {foreach from=$countries item=$countrie}
@@ -34,7 +34,7 @@
                     <div class="col-9">
                         <div class="form-group">
                             <label class="text-uppercase">Pais</label>
-                            <input maxlength="100" name="countrie" type="text" class="form-control">
+                            <input maxlength="100" name="countrie" type="text" class="form-control" placeholder="Ingrese el nombre del Pais">
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                         <div class="col-9">
                             <div class="form-group">
                                 <label class="text-uppercase">Equipo</label>
-                                <input maxlength="100" name="team" type="text" class="form-control">
+                                <input maxlength="100" name="team" type="text" class="form-control" placeholder="Ingrese el nombre del Equipo">
                             </div>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                         <div class="col-9">
                             <div class="form-group">
                                 <label class="text-uppercase">Libertadores</label>
-                                <input name="liberty" type="number" class="form-control">
+                                <input name="liberty" type="number" class="form-control" placeholder="Ingrese la cantidad de Libertadores ">
                             </div>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                         <div class="col-9">
                             <div class="form-group">
                                 <label class="text-uppercase">Sudamericanas</label>
-                                <input name="southAmerica" type="number" class="form-control">
+                                <input name="southAmerica" type="number" class="form-control" placeholder="Ingrese la cantidad de Sudamericanas ">
                             </div>
                         </div>
                     </div>
@@ -100,7 +100,7 @@
                         <div class="col-9">
                             <div class="form-group">
                                 <label class="text-uppercase">Equipo</label>
-                                <input maxlength="100" name="team" type="text" class="form-control">
+                                <input maxlength="100" name="team" type="text" class="form-control" placeholder="Ingrese el nombre del Equipo">
                             </div>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                         <div class="col-9">
                             <div class="form-group">
                                 <label class="text-uppercase">Libertadores</label>
-                                <input name="liberty" type="number" class="form-control">
+                                <input name="liberty" type="number" class="form-control" placeholder="Ingrese la cantidad de Libertadores ">
                             </div>
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                         <div class="col-9">
                             <div class="form-group">
                                 <label class="text-uppercase">Sudamericanas</label>
-                                <input name="southAmerica" type="number" class="form-control">
+                                <input name="southAmerica" type="number" class="form-control" placeholder="Ingrese la cantidad de Sudamericanas ">
                             </div>
                         </div>
                     </div>
@@ -144,7 +144,6 @@
                             <tr>
                                 <th scope="col">Seleccion</th>
                                 <th scope="col">Borrar</th>
-                                <th scope="col">Editar</th>
                             </tr>
                         </thead>
                         {foreach from=$countries item=$countrie }
@@ -152,7 +151,6 @@
                                 <tr>
                                     <td>{$countrie->pais}</td>
                                     <td><a class="btn btn-danger" href="deleteCountrie/{$countrie->id}">Borrar</a></td>
-                                    <td><a class="btn btn-secondary" href="editCountrie/{$countrie->id}">Editar</a></td>
                                 {/foreach}
                             </tr>
                         </tbody>
