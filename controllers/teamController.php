@@ -11,7 +11,6 @@ class teamController
 
     public function __construct()
     {
-
         $this->model = new teamModel();
         $this->view = new teamView();
         $this -> authHelper = new  AuthHelper ();
@@ -33,7 +32,6 @@ class teamController
     public function showTeamsByContries()
     {
         if (!empty($_REQUEST['countriesbyteams'])) {
-
             $id_team=$_REQUEST['countriesbyteams'];
             $teams = $this->model->getTeamsbyCountries($id_team);
             $this->view->showAllTeamsCountrie($teams); 
@@ -68,8 +66,7 @@ class teamController
     {
         $teams = $this->model->getTeamsbyCountries($id);
         if(!empty($teams)){
-            $this->view->showError();
-            
+            $this->view->showCategoryError();
         }else{
             $this->model->delCountries($id);
 

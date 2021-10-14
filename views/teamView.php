@@ -37,6 +37,11 @@ class teamView{
         $this->smarty->display('templates/administrator.tpl');
     }
 
+    function showCategoryError(){
+        $this->smarty->assign('Error','!!!Error, no puede eliminar una categoria que tenga items¡¡¡');
+        $this->smarty->display('templates/categoryerror.tpl');
+    }
+
     function showError(){
         $this->smarty->assign('Error','!!!Error verifique que los campos esten completos¡¡¡');
         $this->smarty->display('templates/error.tpl');
