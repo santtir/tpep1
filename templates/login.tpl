@@ -1,7 +1,7 @@
 {include 'header.tpl'}
 
 <div class="container">
-    <div class="mt-5 w-25 mx-auto">
+    <div class="div-login w-25 mx-auto">
         <form method="POST" action="verify">
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg"

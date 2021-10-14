@@ -2,7 +2,7 @@
 
 <div class="container">
    
-    <h3 class="text-center text-capitalize text-decoration-underline" >{$titulo} </h3>
+    <h3 class="text-center text-capitalize text-decoration-underline main-title" >{$titulo} </h3>
 
    <table class="table table-dark">
     
