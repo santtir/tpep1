@@ -27,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="form-group">
                 <label>Pais Del Equipo</label>
                 <select name="countries" class="form-control">
@@ -41,7 +41,7 @@
                     <option value="7">Chile</option>
                 </select>
             </div>
-            
+
             <button type="submit" class="btn btn-dark mt-2" href='sendTeam'>Enviar</button>
         </form>
     </div>
