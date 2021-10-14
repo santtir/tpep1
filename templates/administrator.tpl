@@ -23,7 +23,7 @@
                 <div class="form-group">
                     <label>Pais </label>
                     <select name="selectCountries" class="form-control">
-                        <option selected>-Elija el pais-</option>
+                    
                         {foreach from=$countries item=$countrie}
                             <option value="{$countrie->id}">{$countrie->pais}</option>
                         {/foreach}

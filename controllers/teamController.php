@@ -83,8 +83,9 @@ class teamController
         if (!empty($_POST["selectCountries"])  && !empty($_POST["countrie"])) {
             $id = $_REQUEST['selectCountries'];
             $countrie = $_REQUEST['countrie'];
-            $this->model->updateCountrie($id, $countrie);
+            $this->model->updateCountrie($id,$countrie);
             header("Location: " . administrator);
+            
         } else {
             $this->view->showError();
         }

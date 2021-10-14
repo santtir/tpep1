@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-10-14 19:23:09
+/* Smarty version 3.1.39, created on 2021-10-14 19:40:13
   from 'C:\xampp\htdocs\Web2tpe\tpep1\templates\administrator.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6168677d7f0185_22064031',
+  'unifunc' => 'content_61686b7d7db6c9_82507624',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '64c6904b295b7902a85c817b77a23149d2aa862e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Web2tpe\\tpep1\\templates\\administrator.tpl',
-      1 => 1634232167,
+      1 => 1634233196,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ),false)) {
-function content_6168677d7f0185_22064031 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61686b7d7db6c9_82507624 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -50,7 +50,7 @@ $_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cach
                 <div class="form-group">
                     <label>Pais </label>
                     <select name="selectCountries" class="form-control">
-                        <option selected>-Elija el pais-</option>
+                    
                         <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['countries']->value, 'countrie');
 $_smarty_tpl->tpl_vars['countrie']->do_else = true;

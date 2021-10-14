@@ -60,7 +60,7 @@ class teamModel{
 
     function updateCountrie($id,$countrie){
         $query=$this->db->prepare('UPDATE countries SET pais=? WHERE id=?');
-        $query->execute([$id,$countrie]);
+        $query->execute([$countrie,$id]);
     }
 
     function InsertTeams($name,$liberty,$southAmerica,$id_countrie){
