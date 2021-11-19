@@ -3,12 +3,13 @@
 require_once("models/teamModel.php");
 require_once("views/teamView.php");
 require_once("helpers/authHelpers.php");
-
+require_once("models/userModel.php");
 class teamController
 {
 
     private $model;
     private $view;
+    private $userModel;
     private $authHelper;
 
     public function __construct()
@@ -16,11 +17,13 @@ class teamController
         $this->model = new teamModel();
         $this->view = new teamView();
         $this -> authHelper = new  AuthHelper ();
+        $this->userModel=new userModel();
+
     }
 
     public function showCountries()
     {
-        $countrie = $this->model->getAllCountries();
+        $countrie = $this->model->getAllCountries();    
         $this->view->showAllCountries($countrie);
     }
 
@@ -43,9 +46,9 @@ class teamController
              
     }
 
-
+    
     public function showAdmin()
-    {   $this -> authHelper -> checkLoggedIn ();   
+    {   $this -> authHelper -> checkLoggedIn ();
         $countrie = $this->model->getAllCountries();
         $teams = $this->model->getAllTeams();
         $this->view->showAdministrator($countrie, $teams);

@@ -40,34 +40,44 @@ switch ($params[0]) {
         $controller = new teamController();
         $controller->showTeams();
         break;
-    case 'administrator';
+    case 'administrator':
         $controller = new teamController();
         $controller->showAdmin();
         break;
-    case 'insertCountrie';
+    case 'insertCountrie':
         $controller = new teamController();
         $controller->addCountries();
         break;
-    case 'deleteCountrie';
+    case 'deleteCountrie':
         $controller = new teamController();
         $controller->deleteCountries($params[1]);
         break;
-    case 'editCountrie';
+    case 'editCountrie':
         $controller = new teamController();
         $controller->UpdateCountrie();
         break;
-    case 'insertTeam';
+    case 'insertTeam':
         $controller = new teamController();
         $controller->addTeams();
         break;
-    case 'deleteTeam';
+    case 'deleteTeam':
         $controller = new teamController();
         $controller->deleteTeams($params[1]);
         break;
-    case 'editTeam';
+    case 'editTeam':
         $controller = new teamController();
         $controller->confirmTeam();
         break;
+
+    case 'register':
+        $authController=new authController();
+        $authController->registerUser();
+
+    case 'showRegisterForm':
+        $authController=new authController();
+        $authController->showRegisterForm();
+        break;
+
     default:
         echo '404 - Página no encontrada';
         break;

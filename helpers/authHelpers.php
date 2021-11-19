@@ -10,18 +10,20 @@ class AuthHelper {
     public function login($user) {
         $_SESSION['USER_ID'] = $user->id;
         $_SESSION['USER_EMAIL'] = $user->email;
+        $_SESSION['ROL']=$user->rol;
     }
 
+    
     public function checkLoggedIn() {
         if (empty($_SESSION['USER_ID'])) {
             header("Location: " . LOGIN);
             die();
         }
-
     }
 
     function logout() {
         session_destroy();
         header("Location: " . BASE_URL);
     } 
+
 }

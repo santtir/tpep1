@@ -3,22 +3,23 @@ require_once("models/userModel.php");
 require_once("views/authView.php");
 require_once("helpers/authHelpers.php");
 
-class authController{
+class authController
+{
 
-    private $model;
-    private $view;
+    private $userModel;
+    private $authView;
     private $authHelper;
 
     function __construct()
     {
-        $this->model = new userModel();
-        $this->view = new authView();
+        $this->userModel = new userModel();
+        $this->authView = new authView();
         $this->authHelper = new AuthHelper();
     }
 
     function showLogin()
     {
-        $this->view->formLogin();
+        $this->authView->formLogin();
     }
 
     public function login()
@@ -28,20 +29,67 @@ class authController{
             $password = $_POST['password'];
 
             // Obtengo el usuario de la base de datos
-            $user = $this->model->getUser($email);
+            $user = $this->userModel->getUser($email);
 
             // Si el usuario existe y las contraseñas coinciden
             if ($user && password_verify($password, $user->password)) {
-                // armo la sesion del usuario
-                $this->authHelper->login($user);
-                header("Location: " . administrator);
+                if ($user->rol == 'admin') {
+                    // armo la sesion del usuario
+                    $this->authHelper->login($user);
+                    header("Location: " . administrator);
+                } else {
+                    $this->authHelper->login($user);
+                    header("Location: " . BASE_URL);
+                }
             } else {
-                $this->view->formLogin("Usuario o contraseña inválida");
+                $this->authView->formLogin("Usuario o contraseña inválida");
             }
         }
     }
 
-    public function logout() {
+    public function logout()
+    {
         $this->authHelper->logout();
+    }
+
+    public function registerUser()
+    {
+        if (!empty($_POST['userEmail']) && !empty($_POST['userPassword'])) {
+            $userEmail = $_POST['userEmail'];
+            $userPassword = password_hash($_POST['userPassword'], PASSWORD_BCRYPT);
+
+            //verifico que no haya otro usuario con el mismo email
+            $users = $this->userModel->getUser($userEmail);
+
+            if (empty($users)) {
+                $this->userModel->registerUser($userEmail, $userPassword);
+
+                $this->loginNewUser($userEmail, $userPassword);
+                
+            } else {
+                $this->authView->formRegister("El email ingresado ya existe");
+            }
+        }
+    }
+
+    public function showRegisterForm()
+    {
+        $this->authView->formRegister();
+    }
+
+    public function loginNewUser($email, $password)
+    {
+        
+        if (!empty($_POST['userEmail']) && !empty($_POST['userPassword'])) {
+            $email = $_POST['userEmail'];
+            $password = $_POST['userPassword'];
+            
+            $user = $this->userModel->getUser($email);
+
+            if ($user && password_verify($password, $user->password)) {
+                $this->authHelper->login($user);
+                header("Location: " . BASE_URL);
+            }
+        }
     }
 }

@@ -13,5 +13,15 @@ class userModel{
         $user = $query->fetch(PDO::FETCH_OBJ);
         return $user;
     }
-    
+
+    function registerUser($userEmail,$userPassword){
+
+        $rol='user';
+
+        $query=$this->db->prepare('INSERT INTO users (email,password,rol) VALUES (?,?,?)');
+        $query->execute([$userEmail,$userPassword,$rol]);
+
+        return $this->db->lastInsertId();
+    }
+
 }
