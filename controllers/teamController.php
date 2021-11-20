@@ -49,6 +49,8 @@ class teamController
     
     public function showAdmin()
     {   $this -> authHelper -> checkLoggedIn ();
+        $admin=$this -> authHelper -> checkRol();
+        var_dump($admin);
         $countrie = $this->model->getAllCountries();
         $teams = $this->model->getAllTeams();
         $this->view->showAdministrator($countrie, $teams);
