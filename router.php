@@ -4,7 +4,7 @@ require_once('controllers/authController.php');
 
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 define('administrator', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/administrator');
-define('LOGIN', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/login');
+define('LOGIN', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/login');
 
 
 if (!empty($_GET['action'])) {
@@ -20,11 +20,11 @@ switch ($params[0]) {
         $authController = new authController();
         $authController->showLogin();
         break;
-    case 'verify': 
+    case 'verify':
         $authController = new authController();
         $authController->login();
         break;
-    case 'logout': 
+    case 'logout':
         $authController = new authController();
         $authController->logout();
         break;
@@ -70,12 +70,26 @@ switch ($params[0]) {
         break;
 
     case 'register':
-        $authController=new authController();
+        $authController = new authController();
         $authController->registerUser();
 
     case 'showRegisterForm':
-        $authController=new authController();
+        $authController = new authController();
         $authController->showRegisterForm();
+        break;
+
+    case 'deleteUser':
+        $authController = new authController();
+        $authController->deleteUser($params[1]);
+        break;
+
+    case 'updateUser':
+        $authController = new authController();
+        $authController->updateUser($params[1]);
+        break;
+    case 'updateAdmin':
+        $authController = new authController();
+        $authController->updateAdmin($params[1]);
         break;
 
     default:

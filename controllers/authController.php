@@ -92,4 +92,40 @@ class authController
             }
         }
     }
+
+    public function deleteUser($id){
+        $rol=$this->authHelper->checkRol();
+        if($rol==true){
+            $this->userModel->deleteUser($id);
+            header("Location: " . administrator);
+
+        }else{
+            $this->view->showAdmError("Este usuario no tiene permisos de administrador");
+        }
+
+    }
+
+    public function updateUser($id_user){
+
+        $rol=$this->authHelper->checkRol();
+        if($rol==true){
+            $this->userModel->updateUser($id_user);
+            header("Location: " . administrator);
+
+        }else{
+            $this->view->showAdmError("Este usuario no tiene permisos de administrador");
+        }
+    }
+
+    public function updateAdmin($id_user){
+
+        $rol=$this->authHelper->checkRol();
+        if($rol==true){
+            $this->userModel->updateAdmin($id_user);
+            header("Location: " . administrator);
+
+        }else{
+            $this->view->showAdmError("Este usuario no tiene permisos de administrador");
+        }
+    }
 }

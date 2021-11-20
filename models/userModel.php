@@ -24,4 +24,35 @@ class userModel{
         return $this->db->lastInsertId();
     }
 
+    function getAllUsers(){
+        $query=$this->db->prepare('SELECT * FROM users');
+        $query->execute();
+
+        $users=$query->fetchAll(PDO::FETCH_OBJ);
+
+        return $users;
+    }
+
+    function deleteUser($id_user){
+        $query=$this->db->prepare('DELETE FROM users WHERE id=?');
+        $query->execute([$id_user]);
+
+    }
+
+    function updateUser($id_user){
+
+        $rol='admin';
+
+        $query=$this->db->prepare('UPDATE users SET rol=? WHERE id=?');
+        $query->execute([$rol,$id_user]);
+    }
+
+    function updateAdmin($id_user){
+
+        $rol='user';
+
+        $query=$this->db->prepare('UPDATE users SET rol=? WHERE id=?');
+        $query->execute([$rol,$id_user]);
+    }
+
 }

@@ -12,7 +12,8 @@
                     <div class="col-9">
                         <div class="form-group">
                             <label class="text-uppercase">Pais</label>
-                            <input maxlength="100" name="countrie" type="text" class="form-control"  placeholder="Ingrese el nombre del Pais">
+                            <input maxlength="100" name="countrie" type="text" class="form-control"
+                                placeholder="Ingrese el nombre del Pais">
                         </div>
                     </div>
                 </div>
@@ -23,7 +24,7 @@
                 <div class="form-group">
                     <label>Pais </label>
                     <select name="selectCountries" class="form-control">
-                    
+
                         {foreach from=$countries item=$countrie}
                             <option value="{$countrie->id}">{$countrie->pais}</option>
                         {/foreach}
@@ -34,7 +35,8 @@
                     <div class="col-9">
                         <div class="form-group">
                             <label class="text-uppercase">Pais</label>
-                            <input maxlength="100" name="countrie" type="text" class="form-control" placeholder="Ingrese el nombre del Pais">
+                            <input maxlength="100" name="countrie" type="text" class="form-control"
+                                placeholder="Ingrese el nombre del Pais">
                         </div>
                     </div>
                 </div>
@@ -49,7 +51,8 @@
                         <div class="col-9">
                             <div class="form-group">
                                 <label class="text-uppercase">Equipo</label>
-                                <input maxlength="100" name="team" type="text" class="form-control" placeholder="Ingrese el nombre del Equipo">
+                                <input maxlength="100" name="team" type="text" class="form-control"
+                                    placeholder="Ingrese el nombre del Equipo">
                             </div>
                         </div>
                     </div>
@@ -57,7 +60,8 @@
                         <div class="col-9">
                             <div class="form-group">
                                 <label class="text-uppercase">Libertadores</label>
-                                <input name="liberty" type="number" class="form-control" placeholder="Ingrese la cantidad de Libertadores ">
+                                <input name="liberty" type="number" class="form-control"
+                                    placeholder="Ingrese la cantidad de Libertadores ">
                             </div>
                         </div>
                     </div>
@@ -65,7 +69,8 @@
                         <div class="col-9">
                             <div class="form-group">
                                 <label class="text-uppercase">Sudamericanas</label>
-                                <input name="southAmerica" type="number" class="form-control" placeholder="Ingrese la cantidad de Sudamericanas ">
+                                <input name="southAmerica" type="number" class="form-control"
+                                    placeholder="Ingrese la cantidad de Sudamericanas ">
                             </div>
                         </div>
                     </div>
@@ -100,7 +105,8 @@
                         <div class="col-9">
                             <div class="form-group">
                                 <label class="text-uppercase">Equipo</label>
-                                <input maxlength="100" name="team" type="text" class="form-control" placeholder="Ingrese el nombre del Equipo">
+                                <input maxlength="100" name="team" type="text" class="form-control"
+                                    placeholder="Ingrese el nombre del Equipo">
                             </div>
                         </div>
                     </div>
@@ -108,7 +114,8 @@
                         <div class="col-9">
                             <div class="form-group">
                                 <label class="text-uppercase">Libertadores</label>
-                                <input name="liberty" type="number" class="form-control" placeholder="Ingrese la cantidad de Libertadores ">
+                                <input name="liberty" type="number" class="form-control"
+                                    placeholder="Ingrese la cantidad de Libertadores ">
                             </div>
                         </div>
                     </div>
@@ -116,7 +123,8 @@
                         <div class="col-9">
                             <div class="form-group">
                                 <label class="text-uppercase">Sudamericanas</label>
-                                <input name="southAmerica" type="number" class="form-control" placeholder="Ingrese la cantidad de Sudamericanas ">
+                                <input name="southAmerica" type="number" class="form-control"
+                                    placeholder="Ingrese la cantidad de Sudamericanas ">
                             </div>
                         </div>
                     </div>
@@ -185,6 +193,32 @@
                                         {/if}
 
                                     {/foreach}
+                                {/foreach}
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Usuario</th>
+                                <th scope="col">Rol</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {foreach from=$users item=$user }
+                                <tr>
+                                    <td>{$user->email}</td>
+                                    <td>{$user->rol}</td>
+                                    {if $user->rol=='user'}
+                                        <td><a class="btn btn-danger" href="deleteUser/{$user->id}">Borrar Usuario</a></td>
+                                        <td><a class="btn btn-secondary" href="updateUser/{$user->id}">Cambiar a Admin</a></td>
+                                    {elseif $user->rol=='admin'}
+                                        <td><a class="btn btn-secondary" href="updateAdmin/{$user->id}">Quitar Admin</a></td>
+
+                                    {/if}
+
+
                                 {/foreach}
                             </tr>
                         </tbody>

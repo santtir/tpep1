@@ -53,7 +53,8 @@ class teamController
         if($admin==true){
             $countrie = $this->model->getAllCountries();
             $teams = $this->model->getAllTeams();
-            $this->view->showAdministrator($countrie, $teams);
+            $users=$this->userModel->getAllUsers();
+            $this->view->showAdministrator($countrie, $teams,$users);
         }else if($admin==false){
             $this->view->showAdmError("Este usuario no tiene permisos de administrador");
         }

@@ -30,10 +30,11 @@ class teamView{
         $this->smarty->display('templates/TeamAndCountries.tpl');
     }
 
-    function showAdministrator($countries,$teams){
+    function showAdministrator($countries,$teams,$users){
         $this->smarty->assign('titulo','Administrador');
         $this->smarty->assign('countries',$countries);
         $this->smarty->assign('teams',$teams);
+        $this->smarty->assign('users',$users);
         $this->smarty->display('templates/administrator.tpl');
     }
 
