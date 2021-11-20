@@ -51,4 +51,9 @@ class teamView{
         $this->smarty->assign('id',$id);
         $this->smarty->display('templates/editbyteam.tpl');
     }
+
+    function showAdmError($error=null){
+        $this->smarty->assign('error',$error);
+        $this->smarty->display('templates/error.tpl');
+    }
 }

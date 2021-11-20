@@ -22,14 +22,14 @@ class AuthHelper {
     }
 
     public function checkRol(){
-        if(empty($_SESSION['ROL'])){
+        if(!empty($_SESSION['ROL'])){
             
             switch($_SESSION['ROL']){
                 case'admin':
-                    return 'true';
+                    return true;
                 break;
                 case'user':
-                   return 'false';
+                   return false;
                 break;
                 default:
                 die();
