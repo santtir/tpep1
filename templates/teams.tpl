@@ -11,8 +11,33 @@
                     <li class="list-group-item" >Cantidad De Libertadores: "{$team->libertadores}"</li>
                     <li class="list-group-item" >Cantidad De Sudamericanas: "{$team->sudamericana}"</li>
                     <li class="list-group-item" >Pais: "{$team->pais}"</li>
-            {/foreach}
+          
             </ul>
+
+        <div class="mb-3">
+        </div>
+        <form method="POST" action="coment">
+            <h4 class=" text-decoration-underline  text-capitalize">Agregue un Comentario</h4>
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                <label for="floatingTextarea2">Comments</label>
+            </div>
+            <div class="mb-3">
+            </div>
+            <h4 class=" text-decoration-underline  text-capitalize">Califique la historia de {$team->equipo}</h4>
+        
+            <select  name="qualify" class="form-select" aria-label="Default select example">
+                <option selected>Califique la historia de {$team->equipo}</option>
+                <option value="1">1 Punto</option>
+                <option value="2">2 Puntos</option>
+                <option value="3">3 Puntos</option>
+                <option value="5">4 Puntos</option>
+                <option value="5">5 Puntos</option>
+
+            </select>
+               <button type="submit" class="btn btn-dark mt-2">Enviar</button>
+        </form>
+      {/foreach}
         {else}
         
      <h3 class=" text-decoration-underline text-center text-capitalize">{$titulo} </h3>
