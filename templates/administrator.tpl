@@ -1,15 +1,15 @@
 {include file='templates/header.tpl'}
-
+<h3 class=" text-decoration-underline text-center text-capitalize">{$titulo}</h2>
 <div class="container">
-
-    <h3 class=" text-decoration-underline text-center text-capitalize">{$titulo}</h2>
-
+    <div class="admin">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+    
+        <div class="col-6 col-md-4">
         <h4 class="text-capitalize">Agregar un nuevo pais</h4>
-        <div class="row align-items-center">
-
+        
             <form action="insertCountrie" method="POST" class="my-4">
                 <div class="row">
-                    <div class="col-9">
+                    <div class="col">
                         <div class="form-group">
                             <label class="text-uppercase">Pais</label>
                             <input maxlength="100" name="countrie" type="text" class="form-control"
@@ -19,6 +19,11 @@
                 </div>
                 <button type="submit" class="btn btn-dark mt-2" href='sendCountrie'>Enviar</button>
             </form>
+           
+        </div>
+        <div class="col">
+        </div>
+        <div class="col-6 col-md-4">
             <h4 class="text-capitalize">Editar categoria pais</h4>
             <form action="editCountrie" method="POST" class="my-4">
                 <div class="form-group">
@@ -32,7 +37,7 @@
                     </select>
                 </div>
                 <div class="row">
-                    <div class="col-9">
+                    <div class="col">
                         <div class="form-group">
                             <label class="text-uppercase">Pais</label>
                             <input maxlength="100" name="countrie" type="text" class="form-control"
@@ -42,9 +47,11 @@
                 </div>
                 <button type="submit" class="btn btn-dark mt-2" href='sendCountrie'>Enviar</button>
             </form>
-
-
-            <div class="col order-1">
+            </div>
+        </div>
+        
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+            <div class="col-6 col-md-4">
                 <h4 class="text-capitalize">Agregar un nuevo equipo</h4>
                 <form action="insertTeam" method="POST" class="my-4">
                     <div class="row">
@@ -88,7 +95,9 @@
                     <button type="submit" class="btn btn-dark mt-2" href='sendTeam'>Enviar</button>
                 </form>
             </div>
-            <div class="col order-1">
+            <div class="col">
+             </div>
+            <div class="col-6 col-md-4">
                 <h4 class="text-capitalize">Editar un equipo</h4>
                 <form action="editTeam" method="POST" class="my-4">
                     <div class="form-group">
@@ -143,9 +152,12 @@
                 </form>
             </div>
         </div>
-        <div class="row align-items-center">
+     </div>
+     </div>
+      
+       
             <div class="row">
-                <div class="col">
+                 <div class="col ">
                     <h4 class="text-capitalize text-center">Paises</h4>
                     <table class="table table-dark">
                         <thead>
@@ -164,9 +176,7 @@
                         </tbody>
                     </table>
                 </div>
-
-
-                <div class="col order-1">
+                <div class="col">
                     <h4 class="text-capitalize text-center">Equipos</h4>
                     <table class="table table-dark">
                         <thead>
@@ -197,6 +207,12 @@
                             </tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+            <div class="row">
+               
+                <div class="col-6">
+                 <h4 class="text-capitalize text-center">Usuarios</h4>
                     <table class="table table-dark">
                         <thead>
                             <tr>
@@ -223,9 +239,12 @@
                             </tr>
                         </tbody>
                     </table>
+             </div>
+              
+                <div class="col">
                 </div>
-            </div>
         </div>
+        
 
 
 

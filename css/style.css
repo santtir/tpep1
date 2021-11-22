@@ -22,3 +22,9 @@ footer{
 .div-login{
     margin-top: 18%;
 }
+
+.admin{
+    
+    border-style: dotted;
+    border: 3px solid black;
+}
