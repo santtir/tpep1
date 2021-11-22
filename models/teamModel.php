@@ -79,4 +79,13 @@ class teamModel{
         $query=$this->db->prepare('UPDATE teams SET nombre_equipo= ?, cantidad_libertadores=?, cantidad_sudamericana=?, id_pais=? WHERE id=?');
         $query->execute([$team,$liberty,$southAmerica,$id_countrie,$id]);
     }
+
+    function bringTeamHistory($id){
+        $query=$this->db->prepare('SELECT t.nombre_equipo as equipo, t.cantidad_libertadores as libertadores, t.cantidad_sudamericana as sudamericana, c.pais FROM teams as t INNER JOIN countries as c on t.id_pais = c.id where t.id = ?');
+        $query->execute([$id]);
+
+        $team_history=$query->fetchAll(PDO::FETCH_OBJ);
+
+        return $team_history;
+    }
 }

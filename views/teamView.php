@@ -16,8 +16,8 @@ class teamView{
         $this->smarty->display('templates/countries.tpl');
     }
 
-    function showAllTeams($countries,$teams){
-        $this->smarty->assign('countries', $countries);
+    function showAllTeams($teams,$history = null){
+        $this->smarty->assign('history',$history);
         $this->smarty->assign('titulo','Historia de los equipos');
         $this->smarty->assign('teams', $teams);
         $this->smarty->display('templates/teams.tpl');
@@ -57,4 +57,5 @@ class teamView{
         $this->smarty->assign('error',$error);
         $this->smarty->display('templates/error.tpl');
     }
+
 }

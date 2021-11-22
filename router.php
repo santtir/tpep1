@@ -91,7 +91,10 @@ switch ($params[0]) {
         $authController = new authController();
         $authController->updateAdmin($params[1]);
         break;
-
+    case'equipmentDetail':
+        $controller = new teamController();
+        $controller->equipmentDetail();
+        break;
     default:
         echo '404 - Página no encontrada';
         break;

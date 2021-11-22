@@ -7,14 +7,14 @@ require_once("models/userModel.php");
 class teamController
 {
 
-    private $model;
+    private $teamModel;
     private $view;
     private $userModel;
     private $authHelper;
 
     public function __construct()
     {
-        $this->model = new teamModel();
+        $this->teamModel = new teamModel();
         $this->view = new teamView();
         $this -> authHelper = new  AuthHelper ();
         $this->userModel=new userModel();
@@ -23,22 +23,21 @@ class teamController
 
     public function showCountries()
     {
-        $countrie = $this->model->getAllCountries();    
+        $countrie = $this->teamModel->getAllCountries();    
         $this->view->showAllCountries($countrie);
     }
 
     public function showTeams()
     {
-        $countrie = $this->model->getAllCountries();
-        $teams = $this->model->getAllTeams();
-        $this->view->showAllTeams($countrie, $teams);
+        $teams = $this->teamModel->getAllTeams();
+        $this->view->showAllTeams($teams);
     }
 
     public function showTeamsByContries()
     {
         if (!empty($_REQUEST['countriesbyteams'])) {
             $id_team=$_REQUEST['countriesbyteams'];
-            $teams = $this->model->getTeamsbyCountries($id_team);
+            $teams = $this->teamModel->getTeamsbyCountries($id_team);
             $this->view->showAllTeamsCountrie($teams); 
         } else {
             $this->view->showError();
@@ -51,8 +50,8 @@ class teamController
     {   $this -> authHelper -> checkLoggedIn ();
         $admin=$this -> authHelper -> checkRol();
         if($admin==true){
-            $countrie = $this->model->getAllCountries();
-            $teams = $this->model->getAllTeams();
+            $countrie = $this->teamModel->getAllCountries();
+            $teams = $this->teamModel->getAllTeams();
             $users=$this->userModel->getAllUsers();
             $this->view->showAdministrator($countrie, $teams,$users);
         }else if($admin==false){
@@ -65,7 +64,7 @@ class teamController
 
         if (!empty($_REQUEST['countrie'])) {
             $countrie = $_REQUEST['countrie'];
-            $this->model->insertCountries($countrie);
+            $this->teamModel->insertCountries($countrie);
 
             header("Location: " . administrator);
         } else {
@@ -75,11 +74,11 @@ class teamController
 
     public function deleteCountries($id)
     {
-        $teams = $this->model->getTeamsbyCountries($id);
+        $teams = $this->teamModel->getTeamsbyCountries($id);
         if(!empty($teams)){
             $this->view->showCategoryError();
         }else{
-            $this->model->delCountries($id);
+            $this->teamModel->delCountries($id);
 
             header("Location: " . administrator);
         }
@@ -91,7 +90,7 @@ class teamController
         if (!empty($_POST["selectCountries"])  && !empty($_POST["countrie"])) {
             $id = $_REQUEST['selectCountries'];
             $countrie = $_REQUEST['countrie'];
-            $this->model->updateCountrie($id,$countrie);
+            $this->teamModel->updateCountrie($id,$countrie);
             header("Location: " . administrator);
             
         } else {
@@ -110,7 +109,7 @@ class teamController
             $southAmerica = $_REQUEST['southAmerica'];
             $id_countrie = $_REQUEST['countries'];
 
-            $this->model->InsertTeams($team, $liberty, $southAmerica, $id_countrie);
+            $this->teamModel->InsertTeams($team, $liberty, $southAmerica, $id_countrie);
 
             header("Location: " . administrator);
         } else {
@@ -120,7 +119,7 @@ class teamController
 
     public function deleteTeams($id)
     {
-        $this->model->delTeams($id);
+        $this->teamModel->delTeams($id);
 
         header("Location: " . administrator);
     }
@@ -137,11 +136,23 @@ class teamController
             $southAmerica = $_REQUEST['southAmerica'];
             $id_countrie = $_REQUEST['countries'];
 
-            $this->model->updateTeam($id, $team, $liberty, $southAmerica, $id_countrie);
+            $this->teamModel->updateTeam($id, $team, $liberty, $southAmerica, $id_countrie);
 
             header("Location: " . administrator);
         } else {
             $this->view->showError();
         }
+    }
+    
+    public function equipmentDetail()
+    { 
+        if(!empty($_POST["teams"])){
+        $id=$_REQUEST["teams"];
+        
+        $team_history=$this->teamModel->bringTeamHistory($id);
+        $history=true;
+        $this->view->showAllTeams($team_history, $history);
+        }
+        
     }
 }
