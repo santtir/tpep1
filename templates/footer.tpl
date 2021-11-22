@@ -4,7 +4,7 @@
         <p>© 2021 Developed By: Lautaro Gallo & Santiago Reyes.</p>
     </div>
 
-    </div>
+    
 </footer>
 </body>
 

@@ -15,16 +15,23 @@
     width: 5rem;
 }
 
-footer{
-    margin-top: 20%;
+footer{ 
+    margin-top:15% ;
+    width: 100%;
 }
 
 .div-login{
     margin-top: 18%;
 }
 
-.admin{
-    
-    border-style: dotted;
-    border: 3px solid black;
+.col-6{
+    border: 1px solid black;
+    margin-bottom: 5rem;
+    margin-top: 3rem;
+    margin-left: 10px;
+
+}
+
+.row{
+    margin-left: 10px;
 }

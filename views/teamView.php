@@ -21,7 +21,6 @@ class teamView{
         $this->smarty->assign('titulo','Historia de los equipos');
         $this->smarty->assign('teams', $teams);
         $this->smarty->display('templates/teams.tpl');
-
     }
 
     function showAllTeamsCountrie($teams){
@@ -44,7 +43,7 @@ class teamView{
     }
 
     function showError(){
-        $this->smarty->assign('Error','!!!Error verifique que los campos esten completos¡¡¡');
+        $this->smarty->assign('error','!!!Error verifique que los campos esten completos¡¡¡');
         $this->smarty->display('templates/error.tpl');
     }
 
