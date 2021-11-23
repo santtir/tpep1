@@ -2,8 +2,8 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 13-10-2021 a las 22:27:09
+-- Servidor: localhost
+-- Tiempo de generación: 23-11-2021 a las 19:14:07
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.9
 
@@ -20,6 +20,20 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `db_equipos`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL,
+  `comentario` varchar(70) NOT NULL,
+  `valoracion` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_team` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -67,10 +81,8 @@ INSERT INTO `teams` (`id`, `nombre_equipo`, `cantidad_libertadores`, `cantidad_s
 (1, 'Boca Juniors', 6, 2, 1),
 (2, 'River Plate', 4, 1, 1),
 (3, 'Independiente', 7, 2, 1),
-(4, 'Estudiantes', 4, 1, 1),
 (5, 'Velez Sarsfield', 1, 0, 1),
 (6, 'Racing', 1, 0, 1),
-(7, 'Flamengo', 2, 0, 2),
 (8, 'Santos', 3, 0, 2),
 (9, 'Gremio', 3, 0, 2),
 (10, 'Sao Pablo', 3, 1, 2),
@@ -92,20 +104,34 @@ INSERT INTO `teams` (`id`, `nombre_equipo`, `cantidad_libertadores`, `cantidad_s
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` varchar(100) NOT NULL,
+  `rol` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `password`) VALUES
-(2, 'lautarovg147@gmail.com', '$2a$12$.ZGfx7G3caZeW3RT9aYlj.OHPxa6Glj1GZKTjKPCeng6kXiqnFRg6'),
-(4, 'santireyes4.sr@gmail.com', '$2a$12$1fuHWajJJTTY3RkYu0qgPuHZu1G.11o834adSAsrO.c8EDcePbMUe');
+INSERT INTO `users` (`id`, `email`, `password`, `rol`) VALUES
+(2, 'lautarovg147@gmail.com', '$2a$12$.ZGfx7G3caZeW3RT9aYlj.OHPxa6Glj1GZKTjKPCeng6kXiqnFRg6', 'admin'),
+(4, 'santireyes4.sr@gmail.com', '$2a$12$1fuHWajJJTTY3RkYu0qgPuHZu1G.11o834adSAsrO.c8EDcePbMUe', 'admin'),
+(18, 'pirulito@gmail.com', '$2y$10$MYtdDFxef9wcqhJsYKNkWOUr9hhgHDAjknR3KhLi6YlcEbx1ZT/rC', 'user'),
+(20, 'pepe@gmail.com', '$2y$10$6JX630XKEiIaPiManERyH.idHjPAG9iDRR8DaCn4fct2QTHoDcm7S', 'user'),
+(21, 'pepe2@gmail.com', '$2y$10$tRUVeyws9uZJ298O2ez9N.nFoHc2GlYB/4HZLP8wkdDaoIIsETfC.', 'user'),
+(22, 'senioragallo@gmail.com', '$2y$10$0k76wqgAq7QJgW1sGoGW6eIjSvid/mwn5gJfGLnBc1QeUMNlPbryy', 'user'),
+(23, 'lolito@gmail.com', '$2y$10$MW9pjRehTA2gLMMrUODc0uanWqCsOV/Opwx7Ds3C.jwGUbDhm9kU.', 'user');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_id_user` (`id_user`),
+  ADD KEY `fk_id_team` (`id_team`);
 
 --
 -- Indices de la tabla `countries`
@@ -131,10 +157,16 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `countries`
 --
 ALTER TABLE `countries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `teams`
@@ -146,11 +178,18 @@ ALTER TABLE `teams`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `comments`
+--
+ALTER TABLE `comments`
+  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`id_team`) REFERENCES `teams` (`id`);
 
 --
 -- Filtros para la tabla `teams`
