@@ -57,4 +57,8 @@ class teamView{
         $this->smarty->display('templates/error.tpl');
     }
 
+    function showHistory($team_history){
+        $this->smarty->assign('teams',$team_history);
+        $this->smarty->display('templates/teamHistory.tpl');
+    }
 }

@@ -38,6 +38,7 @@ async function addComment(e) {
     let comment = {
         comentario: data.get('comentario'),
         valoracion: data.get('qualify'),
+        id_team: data.get('id_team'),
     }
 
     try {

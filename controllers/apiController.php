@@ -2,18 +2,22 @@
 
 require_once 'models/apiModel.php';
 require_once 'views/apiView.php';
-
+require_once 'helpers/authHelpers.php';
 
 class ApiController{
 
     private $apiModel;
     private $view;
     private $userModel;
+    private $authHelper; 
+
 
     function __construct()
     {
         $this->apiModel=new apiModel();
         $this->view=new apiView();
+        $this->authHelper= new  AuthHelper ();
+
     }
 
 
@@ -23,14 +27,18 @@ class ApiController{
     }
 
     function postComment($params=null){
+        
+        $this -> authHelper -> checkLoggedIn ();
+        $id_user=$this->authHelper->obtenerId();
+
         $data=$this->getBody();
 
         $comentario=$data->comentario;
         $valoracion=$data->valoracion;
-        $id_user=$data->id_user;
-        $id_team=$data->id_team;
+      
         
-        $id=$this->apiModel->postComment($comentario,$valoracion,$id_user,$id_team);
+        
+        $id=$this->apiModel->postComment($comentario,$valoracion,$id_user,$params[':ID_TEAM']);
 
         var_dump($id);
         $comentarios=$this->apiModel->getComment($id);

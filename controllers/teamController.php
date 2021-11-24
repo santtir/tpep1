@@ -73,7 +73,7 @@ class teamController
     }
 
     public function deleteCountries($id)
-    {
+    {   
         $teams = $this->teamModel->getTeamsbyCountries($id);
         if(!empty($teams)){
             $this->view->showCategoryError();
@@ -146,13 +146,14 @@ class teamController
     
     public function equipmentDetail()
     { 
-        if(!empty($_POST["teams"])){
+        if(!empty($_POST["teams"]))
+        {
         $id=$_REQUEST["teams"];
         
         $team_history=$this->teamModel->bringTeamHistory($id);
-        $history=true;
-        $this->view->showAllTeams($team_history, $history);
+    
+        $this->view->showHistory($team_history);
         }
-        
     }
 }
+
