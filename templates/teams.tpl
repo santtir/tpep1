@@ -8,7 +8,6 @@
         <div class="form-group">
                             <label>Elija un Equipo</label>
                             <select name="teams" class="form-control">
-                                <option selected>-Elija un equipo-</option>
                                 {foreach from=$teams item=$team }
                                     <option value="{$team->id}">{$team->nombre_equipo}</option>
                                 {/foreach}

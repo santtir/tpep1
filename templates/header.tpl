@@ -10,8 +10,7 @@
         integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
     <link href="css/style.css" rel="stylesheet">
     <title>Campeones Sudamericanos</title>
-    <!-- development version, includes helpful console warnings -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    
     
 </head>
 
@@ -40,7 +39,8 @@
                     </li>
                     <li class="nav-item ms-auto">
                              {if isset($smarty.session.USER_ID)}
-                                <a class="nav-link" href="logout">({$smarty.session.USER_EMAIL}) Logout</a>
+                                <a data-id="{$smarty.session.USER_ID}" id="id_user" class="nav-link" href="logout">({$smarty.session.USER_EMAIL}) Logout</a>
+                                <input type="hidden" id="rol" value="{$smarty.session.ROL}">
                             {else}
                                 <a class="nav-link" href="login">Ingresar</a>
                             {/if}

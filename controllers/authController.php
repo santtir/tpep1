@@ -2,6 +2,7 @@
 require_once("models/userModel.php");
 require_once("views/authView.php");
 require_once("helpers/authHelpers.php");
+require_once 'views/teamView.php';
 
 class authController
 {
@@ -9,12 +10,14 @@ class authController
     private $userModel;
     private $authView;
     private $authHelper;
+    private $teamView;
 
     function __construct()
     {
         $this->userModel = new userModel();
         $this->authView = new authView();
         $this->authHelper = new AuthHelper();
+        $this->teamView=new teamView();
     }
 
     function showLogin()
@@ -65,7 +68,6 @@ class authController
                 $this->userModel->registerUser($userEmail, $userPassword);
 
                 $this->loginNewUser($userEmail, $userPassword);
-                
             } else {
                 $this->authView->formRegister("El email ingresado ya existe");
             }
@@ -79,11 +81,11 @@ class authController
 
     public function loginNewUser($email, $password)
     {
-        
+
         if (!empty($_POST['userEmail']) && !empty($_POST['userPassword'])) {
             $email = $_POST['userEmail'];
             $password = $_POST['userPassword'];
-            
+
             $user = $this->userModel->getUser($email);
 
             if ($user && password_verify($password, $user->password)) {
@@ -93,39 +95,51 @@ class authController
         }
     }
 
-    public function deleteUser($id){
-        $rol=$this->authHelper->checkRol();
-        if($rol==true){
+    public function deleteUser($id)
+    {
+        $rol = $this->authHelper->checkRol();
+        if ($rol == true) {
             $this->userModel->deleteUser($id);
             header("Location: " . administrator);
-
-        }else{
-            $this->view->showAdmError("Este usuario no tiene permisos de administrador");
+        } else {
+            $this->teamView->showAdmError("Este usuario no tiene permisos de administrador");
         }
-
     }
 
-    public function updateUser($id_user){
+    public function updateUser($id_user)
+    {
 
-        $rol=$this->authHelper->checkRol();
-        if($rol==true){
+        $rol = $this->authHelper->checkRol();
+
+
+        if ($rol == true) {
             $this->userModel->updateUser($id_user);
             header("Location: " . administrator);
-
-        }else{
-            $this->view->showAdmError("Este usuario no tiene permisos de administrador");
+        } else {
+            $this->teamView->showAdmError("Este usuario no tiene permisos de administrador");
         }
     }
 
-    public function updateAdmin($id_user){
+    public function updateAdmin($id_user)
+    {
 
-        $rol=$this->authHelper->checkRol();
-        if($rol==true){
-            $this->userModel->updateAdmin($id_user);
-            header("Location: " . administrator);
-
-        }else{
-            $this->view->showAdmError("Este usuario no tiene permisos de administrador");
+        $rol = $this->authHelper->checkRol();
+        $cantAdmin = $this->userModel->getAdmin();
+        $id_actual= $this->authHelper->obtenerId();
+        $admins = count($cantAdmin);
+        if ($admins>1) {
+            if ($rol == true) {
+                $this->userModel->updateAdmin($id_user);
+                if($id_user==$id_actual){
+                    $this->authHelper->logout();
+                }else{
+                    header("Location: ". administrator);
+                }
+            } else {
+                $this->teamView->showAdmError("Este usuario no tiene permisos de administrador");
+            }
+        } else {
+            $this->teamView->showAdmError("No se pueden borrar mas administradores");
         }
     }
 }

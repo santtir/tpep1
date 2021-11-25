@@ -16,7 +16,6 @@
         <form action="detallar" method="POST" class="my-4">
             <label>Elija un pais y vea los equipos campeones</label>
             <select name="countriesbyteams" class="form-control">
-                <option selected>-Elija un pais-</option>
                 {foreach from=$countries item=$countrie}
                     <option value="{$countrie->id}">{$countrie->pais}</option>
                 {/foreach}

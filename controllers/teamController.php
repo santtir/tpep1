@@ -41,8 +41,7 @@ class teamController
             $this->view->showAllTeamsCountrie($teams); 
         } else {
             $this->view->showError();
-        }
-             
+        }        
     }
 
     

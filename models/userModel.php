@@ -55,4 +55,14 @@ class userModel{
         $query->execute([$rol,$id_user]);
     }
 
+    function getAdmin(){
+
+        $query=$this->db->prepare('SELECT * FROM users WHERE rol="admin"');
+        $query->execute();
+
+        $admin=$query->fetchAll(PDO::FETCH_OBJ);
+
+        return $admin;
+    }
+
 }

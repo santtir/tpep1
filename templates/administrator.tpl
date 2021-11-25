@@ -85,7 +85,6 @@
                         <div class="form-group">
                             <label>Pais Del Equipo</label>
                             <select name="countries" class="form-control">
-                                <option selected>-Elija un pais-</option>
                                 {foreach from=$countries item=$countrie}
                                     <option value="{$countrie->id}">{$countrie->pais}</option>
                                 {/foreach}
@@ -103,7 +102,6 @@
                         <div class="form-group">
                             <label>¿Que equipo desea editar?</label>
                             <select name="selectTeams" class="form-control">
-                                <option selected>-Elija un equipo-</option>
                                 {foreach from=$teams item=$team}
                                     <option value="{$team->id}">{$team->nombre_equipo}</option>
                                 {/foreach}
@@ -141,7 +139,6 @@
                         <div class="form-group">
                             <label>Pais Del Equipo</label>
                             <select name="countries" class="form-control">
-                                <option selected>-Elija un pais-</option>
                                 {foreach from=$countries item=$countrie}
                                     <option value="{$countrie->id}">{$countrie->pais}</option>
                                 {/foreach}
